@@ -2,12 +2,100 @@
 //
 
 #include <iostream>
-#include "triangle.h"
+#include "Triangle.h"
 
+using namespace std;
+void createTriangle(Triangle& );
 int main()
 {
+	setlocale(LC_ALL, "Russian");
+	bool exit = true;
+	Triangle tr;
+	point t;
+	int forSwitch, lineSegmentNumber;
+	while (exit) {
+		cout << "1. создать треугольник\n";
+		cout << "2. проверка точки на пренадлженость к границам\n";
+		cout << "3. длина одной из сторон\n";
+		cout << "4. проверка пересечения с ординатой\n";
+		cout << "5. проверка пересечения с абцисой \n";
+		cout << "6.вывод координат в консоль\n";
+		cout << "7. выход из программы \n";
 
-	
+		cout << "введите число\n";
+		cin >> forSwitch;
+		system("cls");
+
+		switch (forSwitch)
+		{
+		case 1:
+			createTriangle(tr);
+			break;
+		case 2:
+			cout << "введите координаты точки: \n";
+			cout << "t.x: "; cin >> t.x; cout << " t.y:"; cin >> t.y;
+			if (tr.PointOnBorder(t)) {
+				cout << "точка прbнадлежит границам \n";
+			}
+			else
+			{
+				cout << "точка не пренадлежит границам \n";
+			}
+			break;
+
+		case 3:
+			cout << "длину какой стороны найти ab - 1, ac - 2, bc - 3";
+			cin >> lineSegmentNumber;
+			cout << tr.GetLenght(lineSegmentNumber);
+			break;
+		case 4:
+			if (tr.CrosseOrdinate()) {
+				cout << "пересекает \n";
+			}
+			else
+			{
+				cout << "не пересекает \n";
+			}
+			break;
+		case 5:
+			if (tr.CrosseAbscissa()) {
+				cout << "пересекает \n";
+			}
+			else
+			{
+				cout << "не пересекает \n";
+			}
+			break;
+		case 6:
+			tr.WtiteInConsole();
+			break;
+		case 7:
+			exit = false;
+			break;
+		default:
+			break;
+		}
+
+
+
+
+	}
+
+}
+
+void createTriangle(Triangle& triangle) {
+	double angA, angB;
+	point a, b;
+
+	cout << "введите координаты точек: \n";
+	cout << "a.x: "; cin >> a.x; cout << "a.y:"; cin >> a.y;
+	cout << "b.x: "; cin >> b.x; cout << "b.y:"; cin >> b.y;
+	cout << "\n";
+	cout << "введите углы в пи: \n";
+	cout << "Угол для точки a: Pi/"; cin >> angA;
+	cout << "\nУгол для точки a: Pi/"; cin >> angB;
+	Triangle tr(a, b, 3.14 / angA, 3.14 / angB);
+	triangle = tr;
 
 }
 
@@ -21,4 +109,3 @@ int main()
 //   4. В окне "Список ошибок" можно просматривать ошибки.
 //   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
 //   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
- 
